@@ -10,7 +10,8 @@ using namespace cv;
 int main()
 {
     srand(unsigned(time(NULL)));
-    char *suit[4] = {"Hearts", "Diamonds", "Clubs", "Spades"};
+    //char *suit[4] = {"Hearts", "Diamonds", "Clubs", "Spades"};
+    char suit[4][10] = {"Hearts", "Diamonds", "Clubs", "Spades"};
     int deck[4][13] = {0};
     int scale = 100;
     Mat draw(Size((13 + 1) * scale, 5 * scale), CV_8UC3, Scalar::all(0));
