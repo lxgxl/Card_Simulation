@@ -15,6 +15,15 @@ int main()
     int scale = 100;
     Mat draw(Size((13 + 1) * scale, 5 * scale), CV_8UC3, Scalar::all(0));
 
+    for(int i = 1; i <= 4; i++)
+    {
+        putText(draw, suit[i - 1],
+         Point(0, scale / 2 * (2 * i + 1)),
+         FONT_HERSHEY_COMPLEX_SMALL,
+         0.78,
+         Scalar::all(255));
+    }
+
     putText(draw, "A",
      Point(scale * 1 + scale / 3, scale),
      FONT_HERSHEY_PLAIN,
