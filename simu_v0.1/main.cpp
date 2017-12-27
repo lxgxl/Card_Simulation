@@ -16,44 +16,51 @@ int main()
     Mat draw(Size((13 + 1) * scale, 5 * scale), CV_8UC3, Scalar::all(0));
 
     putText(draw, "A",
-     Point(scale * 1 + scale / 2, scale / 2),
+     Point(scale * 1 + scale / 3, scale),
      FONT_HERSHEY_PLAIN,
      3,
-     Scalar(255, 0, 0),
-     3, 8, false);
+     Scalar(255, 255, 255),
+     1, 8, false);
 
     for(int i = 2; i <= 9; i++)
     {
         char s[] = " ";
         s[0] = '0' + i;
         putText(draw, s,
-         Point(scale * i + scale / 2, scale / 2),
+         Point(scale * i + scale / 3, scale),
          FONT_HERSHEY_PLAIN,
          3,
-         Scalar(255, 0, 0),
-         3, 8, false);
+         Scalar(255, 255, 255),
+         1, 8, false);
     }
 
+    putText(draw, "10",
+     Point(scale * 10 + scale / 3, scale),
+     FONT_HERSHEY_PLAIN,
+     3,
+     Scalar(255, 255, 255),
+     1, 8, false);
+
     putText(draw, "J",
-         Point(scale * 10 + scale / 2, scale / 2),
-         FONT_HERSHEY_PLAIN,
-         3,
-         Scalar(255, 0, 0),
-         3, 8, false);
+     Point(scale * 11 + scale / 3, scale),
+     FONT_HERSHEY_PLAIN,
+     3,
+     Scalar(255, 255, 255),
+     1, 8, false);
     
     putText(draw, "Q",
-         Point(scale * 11 + scale / 2, scale / 2),
-         FONT_HERSHEY_PLAIN,
-         3,
-         Scalar(255, 0, 0),
-         3, 8, false);
+     Point(scale * 12 + scale / 3, scale),
+     FONT_HERSHEY_PLAIN,
+     3,
+     Scalar(255, 255, 255),
+     1, 8, false);
 
     putText(draw, "K",
-         Point(scale * 12 + scale / 2, scale / 2),
-         FONT_HERSHEY_PLAIN,
-         3,
-         Scalar(255, 0, 0),
-         3, 8, false);
+     Point(scale * 13 + scale / 3, scale),
+     FONT_HERSHEY_PLAIN,
+     3,
+     Scalar(255, 255, 255),
+     1, 8, false);
 
     for(int i = 1; i <= 5; i++)
     {
@@ -77,19 +84,19 @@ int main()
         if(deck[rows][cols] == 0)
         {
             deck[rows][cols] = ++count;
-            char s[2];
-            s[0] = count / 10 + '0';
+            char s[3] = { 0 };
+            s[0] = (count / 10) ? (count / 10) + '0' : ' ';
             s[1] = count % 10 + '0';
             //rectangle(draw, Rect(Point((cols + 1) * scale, (rows + 1) *scale), Size(scale, scale)),
             // Scalar::all(127), -1);
             putText(draw, s,
-                Point(scale * cols + scale, scale * rows + scale / 2 * 3),
-                FONT_HERSHEY_PLAIN,
-                3,
-                Scalar(255, 0, 0),
-                3, 8, false);
+             Point(scale * cols + scale * 6 / 5, scale * rows + scale * 8 / 5),
+             FONT_HERSHEY_PLAIN,
+             3,
+             Scalar(255, 0, 0),
+             3, 8, false);
             imshow("帮助理解", draw);
-            waitKey(1000);
+            waitKey(100);
         }
     }
 
