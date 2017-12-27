@@ -73,7 +73,7 @@ int main()
     while(count <= 51)
     {
         int rows = rand() % 4;
-        int cols = rand() % 14;
+        int cols = rand() % 13;
         if(deck[rows][cols] == 0)
         {
             deck[rows][cols] = ++count;
