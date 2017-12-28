@@ -30,6 +30,28 @@ void addText(Mat &draw)
             Scalar(rand()%256, rand()%256, rand()%256),
             1);
     }
+
+    //初始化上端字符串
+    char s[13][3] = { 0 };
+    s[0][0] = 'A';
+    for(int i = 1; i <= 8; i++)
+    {
+        s[i][0] = i + '1';
+    }
+    strcpy(s[9], "10");
+    s[10][0] = 'J';
+    s[11][0] = 'Q';
+    s[12][0] = 'K';
+
+    for(int i = 0; i < 13; i++)
+    {
+        putText(draw, s[i],
+            Point(left_border + card_width * (i * 3 + 1) / 3, up_border * 2 / 3),
+            FONT_HERSHEY_SCRIPT_COMPLEX,
+            1,
+            Scalar(rand()%256, rand()%256, rand()%256),
+            2);
+    }
 }
 
 //画方格函数
