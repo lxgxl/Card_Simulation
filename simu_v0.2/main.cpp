@@ -16,6 +16,22 @@ const int up_border = 80;
 const int rows = 4;
 const int cols = 13;
 
+void addText(Mat &draw)
+{
+    //采用二维数组存放花色名称
+    char suit[rows][10] = {"Hearts", "Diamonds", "Clubs", "Spades"};
+
+    for(int i = 0; i < 4; i++)
+    {
+        putText(draw, suit[i],
+            Point(10, up_border + card_height * (i * 5 + 4) / 5),
+            FONT_HERSHEY_SCRIPT_COMPLEX,
+            1,
+            Scalar(rand()%256, rand()%256, rand()%256),
+            1);
+    }
+}
+
 //画方格函数
 void drawPlaid(Mat &plaid)
 {
@@ -42,8 +58,6 @@ int main()
 {
     //产生随机数
     srand(unsigned(time(NULL)));
-    //采用二维数组存放花色名称
-    char suit[rows][10] = {"Hearts", "Diamonds", "Clubs", "Spades"};
     //用于标记出现顺序
     int deck[rows][cols] = {0};
     
@@ -56,6 +70,8 @@ int main()
     Mat plaid(draw, Rect(Point(left_border, up_border), Size(card_width * cols, card_height * rows)));
     //画方格
     drawPlaid(plaid);
+    //加入字体
+    addText(draw);
 
     imshow("扑克牌", draw);
 
