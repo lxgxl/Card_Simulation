@@ -95,6 +95,35 @@ int main()
     //加入字体
     addText(draw);
 
+    //发牌
+    int count = 0;
+    while(count < 52)
+    {
+        int i = rand() % rows;
+        int j = rand() % cols;
+
+        if(!deck[i][j])
+        {
+            deck[i][j] = ++count;
+
+            char s[3] = {0};
+            s[0] = (count < 10) ? ' ' : count / 10 + '0';
+            s[1] = count % 10 + '0';
+
+            putText(plaid,
+                s,
+                Point(card_width * (j * 5 + 1) / 5,
+                    card_height * (i * 5 + 4) / 5),
+                FONT_HERSHEY_PLAIN,
+                3,
+                Scalar(rand()%256, rand()%256, rand()%256),
+                2);
+
+            waitKey(1000);
+            imshow("扑克牌", draw);
+        }
+    }
+
     imshow("扑克牌", draw);
 
     waitKey();
