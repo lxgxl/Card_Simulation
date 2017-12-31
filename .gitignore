@@ -1,6 +1,0 @@
-#可执行文件
-build
-
-#编译脚本
-Makefile
-.vscode/*
