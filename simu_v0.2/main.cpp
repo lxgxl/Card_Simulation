@@ -76,6 +76,75 @@ void drawPlaid(Mat &plaid)
     }
 }
 
+void showNum(Mat &show, int deck[rows][cols], int i, int j)
+{
+    //初始化图像
+    show = Scalar::all(0);
+    double scale = 5;
+    //显示产生的随机数
+    char h[10] = "row =  ", l[10] = "col = ";
+    h[7] = i + 1 + '0';
+    l[6] = (j + 1 < 10) ? ' ' : (j + 1) / 10 + '0';
+    l[7] = (j + 1) % 10 + '0';
+    putText(show,
+        "Random num:",
+        Point(50, 100),
+        FONT_HERSHEY_PLAIN,
+        scale,
+        Scalar::all(200),
+        2);    
+    
+    putText(show,
+        h,
+        Point(50, 200),
+        FONT_HERSHEY_PLAIN,
+        scale,
+        Scalar::all(255),
+        2);
+    putText(show,
+        l,
+        Point(50, 250),
+        FONT_HERSHEY_PLAIN,
+        scale,
+        Scalar::all(255),
+        2);
+
+    if(deck[i][j])
+    {
+        putText(show,
+            "Have been placed!",
+            Point(50, 400),
+            FONT_HERSHEY_PLAIN,
+            scale / 2,
+            Scalar(255, 0, 0),
+            2);
+        putText(show,
+            "Get a new row and col!",
+            Point(50, 450),
+            FONT_HERSHEY_PLAIN,
+            scale / 2,
+            Scalar(255, 0, 0),
+            2);
+    }
+    else
+    {
+        putText(show,
+            "Ok!",
+            Point(50, 400),
+            FONT_HERSHEY_PLAIN,
+            scale / 2,
+            Scalar(0, 255, 0),
+            2);
+        putText(show,
+            "It will be placed!",
+            Point(50, 450),
+            FONT_HERSHEY_PLAIN,
+            scale / 2,
+            Scalar(0, 255, 0),
+            2);
+    }
+}
+
 int main()
 {
     //产生随机数
@@ -95,12 +164,18 @@ int main()
     //加入字体
     addText(draw);
 
+    //创建窗口
+    Mat Try(Size(640, 480), CV_8UC3, Scalar::all(0));
+    namedWindow("产生随机行列");
+    imshow("产生随机行列", Try);
     //发牌
     int count = 0;
     while(count < 52)
     {
         int i = rand() % rows;
         int j = rand() % cols;
+
+        showNum(Try, deck, i, j);
 
         if(!deck[i][j])
         {
@@ -118,10 +193,10 @@ int main()
                 3,
                 Scalar(rand()%256, rand()%256, rand()%256),
                 2);
-
-            waitKey(1000);
-            imshow("扑克牌", draw);
         }
+        waitKey();
+        imshow("扑克牌", draw);
+        imshow("产生随机行列", Try);
     }
 
     imshow("扑克牌", draw);
